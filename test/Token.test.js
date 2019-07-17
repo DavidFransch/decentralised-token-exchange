@@ -174,7 +174,6 @@ contract('Token', ([deployer, receiver, exchange])=>{
                 await token.transferFrom(deployer, receiver, invalidAmount, {from: exchange}).should.be.rejectedWith(EVM_REVERT)
             })
         
-
             it('rejects invalid recipients', async()=>{
                     await token.transferFrom(deployer, 0x0, amount, {from: deployer}).should.be.rejected
             })
