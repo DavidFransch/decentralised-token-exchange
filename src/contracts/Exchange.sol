@@ -12,6 +12,7 @@ uint256 public feePercent;//the fee percentage
 address constant ETHER = address(0); //store Ether in tokens mapping with blank address
 mapping(address => mapping(address=> uint256)) public tokens; //1=>token 2=>userAddress 3=>TokenNumber
 mapping(uint256 => _Order) public orders;
+mapping(uint256 => bool) public orderCancelled;
 uint256 public orderCount;
 //Events
 event Deposit(address token, address user, uint256 amount, uint256 balance);
@@ -19,6 +20,16 @@ event Withdraw(address token, address user, uint256 amount, uint256 balance);
 
 //Structs
 event Order(
+    uint256 id,
+    address user,
+    address tokenGet,
+    uint256 amountGet,
+    address tokenGive,
+    uint256 amountGive,
+    uint256 timestamp
+);
+
+event Cancel(
     uint256 id,
     address user,
     address tokenGet,
@@ -86,6 +97,14 @@ struct _Order{
         orderCount = orderCount.add(1);
         orders[orderCount] = _Order(orderCount, msg.sender, _tokenGet, _amountGet, _tokenGive, _amountGive, now);
         emit Order(orderCount, msg.sender, _tokenGet, _amountGet, _tokenGive, _amountGive, now);
+    }
+
+    function cancelOrder(uint256 _id) public{
+        _Order storage _order = orders[_id];
+        require(_order.id == _id, "Order does not exist");
+        require(address(_order.user) == msg.sender, "Not users order");
+        orderCancelled[_id] = true;
+        emit Cancel(_order.id, msg.sender, _order.tokenGet, _order.amountGet, _order.tokenGive, _order.amountGive, now);
     }
 }
 
