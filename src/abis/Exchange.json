@@ -18764,12 +18764,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xc9Dc7206961D4737129D13fcfC2B0Fc3EE5534e4",
-      "transactionHash": "0x44517effdc9b7e5bb2855f47d31d3bcb19999450ef85050b0aede36acf9a8a61"
+      "address": "0x6d174911B0ADca8b68Aa3A90a24ec0cc457aA8a9",
+      "transactionHash": "0xa5e1f0bbe8d33641ede884f3d457620b8b61d88930e76c8e68ba4b2d653899ec"
     }
   },
   "schemaVersion": "3.0.1",
-  "updatedAt": "2019-07-29T13:19:46.940Z",
+  "updatedAt": "2019-08-06T09:33:46.269Z",
   "devdoc": {
     "methods": {}
   },
