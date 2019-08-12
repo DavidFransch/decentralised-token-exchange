@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import './App.css';
 import Web3 from 'web3'
 import {connect} from 'react-redux'
+import Navbar from './Navbar'
 import {
 loadWeb3, 
 loadAccount, 
 loadToken, 
 loadExchange } from '../store/interactions'
-import {accountSelector} from '../store/selectors'
+
 class App extends Component {
   componentWillMount(){
     this.loadBlockchainData(this.props.dispatch)
@@ -23,28 +24,10 @@ class App extends Component {
   }
   
   render() {
-    console.log(this.props.account)
+    //console.log(this.props.account)
     return (
       <div>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-          <a className="navbar-brand" href="/#">Navbar</a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link" href="/#">Link 1</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/#">Link 2</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/#">Link 3</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
+        <Navbar/>
         <div className="content">
           <div className="vertical-split">
             <div className="card bg-dark text-white">
@@ -117,7 +100,7 @@ class App extends Component {
 //Access to state
 function mapStateToProps(state){
   return{
-    account: accountSelector(state)
+    //account: accountSelector(state)
     //TODO..
   }
 }
