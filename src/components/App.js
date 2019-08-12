@@ -7,25 +7,23 @@ loadWeb3,
 loadAccount, 
 loadToken, 
 loadExchange } from '../store/interactions'
-
+import {accountSelector} from '../store/selectors'
 class App extends Component {
   componentWillMount(){
     this.loadBlockchainData(this.props.dispatch)
   }
 
-  async loadBlockchainData(dispatch){
+  async loadBlockchainData(dispatch) {
     const web3 = loadWeb3(dispatch)
     const network = await web3.eth.net.getNetworkType()
     const networkId = await web3.eth.net.getId()
     const accounts = await loadAccount(web3, dispatch)
-    //const networks = Token.networks
     const token = loadToken(web3, networkId, dispatch)
     loadExchange(web3, networkId, dispatch)
-    //const totalSupply = await token.methods.totalSupply().call()
-    //console.log("totalSupply", totalSupply)
   }
   
   render() {
+    console.log(this.props.account)
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -116,8 +114,10 @@ class App extends Component {
   }
 }
 
+//Access to state
 function mapStateToProps(state){
   return{
+    account: accountSelector(state)
     //TODO..
   }
 }
