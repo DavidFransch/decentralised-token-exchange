@@ -9,9 +9,11 @@ loadAccount,
 loadToken, 
 loadExchange
 } from '../store/interactions'
-
 import { contractsLoadedSelector } from '../store/selectors'
 
+//import { tokenLoadedSelector } from '../store/selectors'
+//import { exchangeLoadedSelector } from '../store/selectors'
+//import {accountSelector}  from '../store/selectors'
 
 class App extends Component {
   componentWillMount(){
@@ -23,23 +25,16 @@ class App extends Component {
     await web3.eth.net.getNetworkType()
     const networkId = await web3.eth.net.getId()
     await loadAccount(web3, dispatch)
-    const token = await loadToken(web3, networkId, dispatch)
-    if(!token) {
-      window.alert('Token smart contract not detected on the current network. Please select another network with Metamask.')
-      return
-    }
-    const exchange = await loadExchange(web3, networkId, dispatch)
-    if(!exchange) {
-      window.alert('Exchange smart contract not detected on the current network. Please select another network with Metamask.')
-      return
-    }
+    loadToken(web3, networkId, dispatch)
+    loadExchange(web3, networkId, dispatch)
   }
   
   render() {
+    //console.log("LOADED?", this.props.contractsLoaded)
     return (
       <div>
         <Navbar/>
-        { this.props.contractsLoaded ? <Content /> : <div className="content"></div> }
+        <Content/>
       </div>
     );
   }
@@ -47,9 +42,11 @@ class App extends Component {
 
 //Access to state
 function mapStateToProps(state){
-  //console.log("contractsLoaded?", contractsLoadedSelector(state))
+  //console.log("token LOADED?", tokenLoadedSelector(state)) -- false
+  //console.log("exchange LOADED?", exchangeLoadedSelector(state)) -- true
+  console.log("contractsLoaded?", contractsLoadedSelector(state))
   return{
-   contractsLoaded: contractsLoadedSelector(state)
+   //contractsLoaded: contractsLoadedSelector(state)
    //account: accountSelector(state)
   }
   

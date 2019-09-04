@@ -15,7 +15,7 @@ class Navbar extends Component{
                 <li className="nav-item">
                     <a
                     className="nav-link small"
-                    href={"https://etherscan.io/addess/${this.props.account}"}
+                    href={"https://etherscan.io/addess/${this.props.account"}
                     target="_blank"
                     rel="noopener noreferrer"
                     >
@@ -30,8 +30,10 @@ class Navbar extends Component{
 
 //Access to state
 function mapStateToProps(state){
+   // console.log("ACCOUNT:", accountSelector(state))
     return{
       account: accountSelector(state)
+      
     }
   }
 

@@ -13,8 +13,9 @@ export function web3AccountLoaded(account){
     }
 }   
 //TOKEN
+
 export function tokenLoaded(contract){
-    //console.log("ACTION contract", contract)
+    console.log("ACTION contract", contract)
     return{
         type:'TOKEN_LOADED',
         contract

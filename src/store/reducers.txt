@@ -14,7 +14,7 @@ function web3(state = {}, action) {
 function token(state = {}, action) {
     switch (action.type) {
         case 'TOKEN_LOADED':
-            //console.log("Reducer HIT", action.contract)
+            console.log("Reducer HIT", action.contract)
             return { ...state, loaded: true, contract: action.contract }
         default:
             return state
