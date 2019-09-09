@@ -11,10 +11,10 @@ const showFilledOrders = (filledOrders)=>{
         <tbody>
         { filledOrders.map((order) => {
             return(
-                <tr className={'order-${order.id}'} key={order.id}>
+                <tr className={`order-${order.id}`} key={order.id}>
                     <td className="text-muted">{order.formattedTimestamp}</td>
                     <td>{order.tokenAmount}</td>  
-                    <td className={'text-${order.tokenPriceClass}'}>{order.tokenPrice}</td>     
+                    <td className={`text-${order.tokenPriceClass}`}>{order.tokenPrice}</td>     
                 </tr>
             )
         })}

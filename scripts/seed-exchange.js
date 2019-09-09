@@ -97,7 +97,7 @@ module.exports = async function(callback){
         await wait(1)
 
         //User 1 makes final order
-        result = await exchange.makeOrder(token.address, tokens(2000), ETHER_ADDRESS, ether(0.15), { from:user1 })
+        result = await exchange.makeOrder(token.address, tokens(200), ETHER_ADDRESS, ether(0.15), { from:user1 })
         console.log(`Made order from ${user1}`)
 
         //User 2 fills final order
