@@ -10,7 +10,7 @@ const renderOrder = (order) =>{
     return(
         <tr key={order.id}>
             <td>{order.tokenAmount}</td>
-            <td className={`text-${order.orderTypeClass}`}>order.tokenPrice</td>
+            <td className={`text-${order.orderTypeClass}`}>{order.tokenPrice}</td>
             <td>{order.etherAmount}</td>
         </tr>
     )
