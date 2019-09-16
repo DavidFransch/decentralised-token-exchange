@@ -48,7 +48,7 @@ export function allOrdersLoaded(allOrders){
         allOrders
     }
 }
-
+//Cancel order contract + event
 export function orderCancelling(){
     return{
         type:'ORDER_CANCELLING' 
@@ -58,6 +58,19 @@ export function orderCancelling(){
 export function orderCancelled(order){
     return{
         type:'ORDER_CANCELLED', 
+        order
+    }
+}
+//Fill order contract + event
+export function orderFilling(){
+    return{
+        type:'ORDER_FILLING', 
+    }
+}
+
+export function orderFilled(order){
+    return{
+        type:'ORDER_FILLED', 
         order
     }
 }

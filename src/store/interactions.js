@@ -8,7 +8,9 @@ import{
     filledOrdersLoaded,
     allOrdersLoaded,
     orderCancelling,
-    orderCancelled
+    orderCancelled,
+    orderFilling,
+    orderFilled
 }from './actions'
 
 import Token from '../abis/Token.json'
@@ -73,8 +75,7 @@ export const loadAllOrders = async(exchange, dispatch) =>{
     //Add traded orders to redux store
     dispatch(allOrdersLoaded(allOrders))
 }
-//Cancel Orders
-
+//Cancelling Orders
 export const cancelOrder = (dispatch, exchange, order, account) => {
     exchange.methods.cancelOrder(order.id).send({ from: account })
     .on('transactionHash', (hash) =>{
@@ -85,11 +86,27 @@ export const cancelOrder = (dispatch, exchange, order, account) => {
         console.log(error)
         window.alert('There was an error!')
     })
-
 }
 
 export const subscribeToEvents = async(exchange, dispatch) => {
     exchange.events.Cancel({}, (error, event) =>{
         dispatch(orderCancelled(event.returnValues))
+    })
+    //orderFilled -> _trade -> Trade Event
+    exchange.events.Trade({}, (error, event) =>{
+        dispatch(orderFilled(event.returnValues))
+    })
+}
+
+//Filling Orders
+export const fillOrder = (dispatch, exchange, order, account) => {
+    exchange.methods.fillOrder(order.id).send({ from: account })
+    .on('transactionHash', (hash) =>{
+        dispatch(orderFilling())
+    })
+
+    .on('error', (error) =>{
+        console.log(error)
+        window.alert('There was an error!')
     })
 }
