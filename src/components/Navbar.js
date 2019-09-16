@@ -30,7 +30,7 @@ class Navbar extends Component{
 
 //Access to state
 function mapStateToProps(state){
-   // console.log("ACCOUNT:", accountSelector(state))
+   //console.log("ACCOUNT:", accountSelector(state))
     return{
       account: accountSelector(state)
       
