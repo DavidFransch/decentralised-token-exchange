@@ -1,6 +1,6 @@
 The following project is a decentralised crypto-currency exchange.<br>
 The smart contracts are written in Solidity and tested using unit tests, which are written in JavaScript.<br>
-The UI/UX is built using React.js, more specificaaly the Redux JavaScript library is used to
+The UI/UX is built using React.js, more specifically the Redux JavaScript library is used to
 manage the applications state.<br>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
